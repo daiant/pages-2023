@@ -1,8 +1,5 @@
-@import "./animations";
-
 .main {
   section {
-    background-color: #323232;
     padding-inline: 15px;
     scroll-margin-block-start: 70px;
     &.front {
@@ -30,26 +27,10 @@
     }
     .title {
       text-align: center;
+      h1,
       h2,
       h3 {
         margin-block: 0;
-        // animation: focus-in 1s ease-in-out both;
-        // animation-delay: 1.5s;
-      }
-      h1 {
-        font-size: 3rem;
-        margin-block: 0.2em;
-        // animation: focus-in-movement 1.5s ease-in-out both;
-      }
-      h2 {
-        font-size: 1.75rem;
-        font-weight: 500;
-      }
-      h3 {
-        font-size: 1.15rem;
-        font-weight: 100;
-        font-style: italic;
-        // animation-duration: 1.5s;
       }
     }
     .bubbles {
@@ -103,21 +84,6 @@
         aspect-ratio: 16 / 9;
         background-color: teal;
       }
-    }
-  }
-  .nav {
-    position: sticky;
-    background-color: #323232;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 15px;
-    z-index: 2;
-    p {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-block: 1rem;
     }
   }
 }
