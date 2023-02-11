@@ -1,6 +1,7 @@
 'use client';
 
 import Bubble from '@/components/Bubble/bubble';
+import BubbleScene from '@/components/BubbleScene/bubbleScene';
 import { Montserrat } from '@next/font/google'
 import styles from './page.module.scss';
 
@@ -24,6 +25,7 @@ export default function Home() {
           <h3>CSS magician</h3>
         </div>
         <div className={styles.bubbles}>
+          <BubbleScene />
           {/* {bubbles.map((bubble: Bubble) => <Bubble key={bubble.title} title={bubble.title} img={bubble.img}></Bubble>)} */}
         </div>
         <div className={styles.scrollDown} onClick={scrollIntoContent}>
