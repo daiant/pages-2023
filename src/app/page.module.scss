@@ -4,21 +4,23 @@
   section {
     background-color: #323232;
     padding-inline: 15px;
+    scroll-margin-block-start: 70px;
     &.front {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
       z-index: 9;
+      padding-block-start: 100px;
     }
     &.disableAnimations {
       * {
         animation: none !important;
       }
       .bubbles {
-        height: 100%;
+        height: 40vh;
         aspect-ratio: 4 / 3;
         border-color: #3b3b3b;
       }
@@ -31,13 +33,13 @@
       h2,
       h3 {
         margin-block: 0;
-        animation: focus-in 1s ease-in-out both;
-        animation-delay: 1.5s;
+        // animation: focus-in 1s ease-in-out both;
+        // animation-delay: 1.5s;
       }
       h1 {
         font-size: 3rem;
         margin-block: 0.2em;
-        animation: focus-in-movement 1.5s ease-in-out both;
+        // animation: focus-in-movement 1.5s ease-in-out both;
       }
       h2 {
         font-size: 1.75rem;
@@ -47,29 +49,22 @@
         font-size: 1.15rem;
         font-weight: 100;
         font-style: italic;
-        animation-duration: 1.5s;
+        // animation-duration: 1.5s;
       }
     }
     .bubbles {
-      animation: gogogogo 300ms linear forwards;
-      animation-delay: 3.75s;
-      // display: none;
-      height: 60vh;
-      max-height: 0;
-      width: 100%;
       margin-block: 32px;
-      border: 1px solid transparent;
+      border: 1px solid white;
       overflow: hidden;
       border-radius: 5px;
+      height: 40vh;
+      width: 100%;
     }
     .scrollDown {
       text-align: center;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      animation: focus-in 200ms linear forwards;
-      animation-delay: 3.75s;
-      opacity: 0;
       &:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -111,11 +106,9 @@
     }
   }
   .nav {
-    position: fixed;
+    position: sticky;
     background-color: #323232;
     top: 0;
-    left: 0;
-    right: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
