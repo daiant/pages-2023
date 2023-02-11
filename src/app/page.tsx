@@ -11,7 +11,7 @@ const bubbles: Array<Bubble> = [
   { title: 'Drag me' }
 ];
 function scrollIntoContent() {
-  window.scrollBy({ behavior: 'smooth', top: window.innerHeight - window.scrollY });
+  document.getElementById('scroll-next')?.scrollIntoView({behavior: 'smooth', block: 'start'});
 }
 export default function Home() {
   const devMode: boolean = false;
@@ -32,11 +32,13 @@ export default function Home() {
           <span>work</span>
         </div>
       </section>
+      <div className={styles.mainPage}>
+
       <nav className={styles.nav}>
         <p>Carlos is</p>
         <span>Burgir</span>
       </nav>
-      <section>
+      <section id='scroll-next'>
         <div className={styles.info}>
           <h1>a CSS magician</h1>
           <div className={styles.content}>
@@ -61,6 +63,7 @@ export default function Home() {
           <h1>a Hobbyist</h1>
         </div>
       </section>
+      </div>
     </main>
   )
 }
