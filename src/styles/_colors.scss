@@ -1,6 +1,24 @@
 :root {
-    --background-light: #FBFDF9;
+    --background-light: #fbfdf9;
+    --color: #191c1a;
+
+    --background-dark: #191c1a;
+    --color-dark: #e1e3df;
 }
-section, main {
+section,
+main {
     background-color: var(--background-light);
+}
+* {
+    color: var(--color);
+    -webkit-tap-highlight-color: transparent;
+}
+@media (prefers-color-scheme: dark) {
+    section,
+    main {
+        background-color: var(--background-dark);
+    }
+    :root {
+        --color: var(--color-dark);
+    }
 }

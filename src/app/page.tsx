@@ -2,6 +2,7 @@
 
 import Bubble from '@/components/Bubble/bubble';
 import Nav from '@/components/Navigation/nav';
+import Splash from '@/components/sections/Splash/splash';
 import styles from './page.module.scss';
 
 
@@ -9,23 +10,12 @@ const bubbles: Array<Bubble> = [
   { title: 'me', img: 'https://github.com/daiant.png' },
   { title: 'Drag me' }
 ];
-function scrollIntoContent() {
-  document.getElementById('scroll-next')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+
 export default function Home() {
   const devMode: boolean = false;
   return (
     <main className={`${styles.main}`}>
-      <section id='splash' className={`${devMode ? styles.disableAnimations : ''} ${styles.front}`}>
-        <div className={styles.title}>
-          <h1>Carlos</h1>
-          <h2>Frontend developer</h2>
-          <h3>CSS magician</h3>
-        </div>
-      </section>
-      <section className="monsteri">
-        
-      </section>
+      <Splash />
       <div className={styles.mainPage}>
         <Nav></Nav>
 
