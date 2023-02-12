@@ -1,3 +1,4 @@
+import ThemeSwitcher from '@/components/ThemeSwitcher/themeSwitcher';
 import { useEffect, useState } from 'react';
 import styles from './splash.module.scss';
 
@@ -7,36 +8,12 @@ export default function Splash() {
     useEffect(() => {
         setDarkTheme(prefersDark);
     }, [])
-    function handleThemeChange() {
-        // TODO: Transition on background gucci
-        const root = document.querySelector(':root');
-        if (!root) return;
-
-        if(!darkTheme) {
-            // Switch to dark
-            const color = getComputedStyle(root).getPropertyValue('--color-dark');
-            const background = getComputedStyle(root).getPropertyValue('--background-dark');
-            const cover = getComputedStyle(root).getPropertyValue('--cover-dark');
-            (root as HTMLElement).style.setProperty('--main-color', color);
-            (root as HTMLElement).style.setProperty('--main-bg', background);
-            (root as HTMLElement).style.setProperty('--cover', cover);
-        } else {
-            // Switch to light
-            const color = getComputedStyle(root).getPropertyValue('--color-light');
-            const background = getComputedStyle(root).getPropertyValue('--background-light');
-            const cover = getComputedStyle(root).getPropertyValue('--cover-light');
-            (root as HTMLElement).style.setProperty('--main-color', color);
-            (root as HTMLElement).style.setProperty('--main-bg', background);
-            (root as HTMLElement).style.setProperty('--cover', cover);
-        }
-        setDarkTheme(!darkTheme);
-
+    function handleTheme(isDark: boolean): void {
+        setDarkTheme(isDark);
     }
     return <>
         <section id='splash' className={styles.main}>
-            <div className={styles.themeChanger} onClick={handleThemeChange}>
-                <img src={darkTheme ? '/sun.svg' : '/moon.svg'} />
-            </div>
+            <ThemeSwitcher className={styles.themeChanger} onThemeChange={handleTheme} />
             <div className={styles.title}>
                 <h1>Carlos</h1>
                 <h2>Frontend developer</h2>
@@ -54,7 +31,7 @@ export default function Splash() {
             <div className={styles.scrollDown}>
                 <h3>See my</h3>
                 <img src="/scroll.png" title='scroll down'
-                style={{filter: darkTheme ? 'invert(1)' : ''}} />
+                    style={{ filter: darkTheme ? 'invert(1)' : '' }} />
                 <h3>work</h3>
             </div>
         </section>
