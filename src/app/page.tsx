@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className={`${styles.main}`}>
       <Splash />
-      <div className={styles.mainPage}>
+      <div className={styles.mainPage} id='main'>
         <Nav></Nav>
 
         <section id='scroll-next'>

@@ -11,6 +11,10 @@ export default function Splash() {
     function handleTheme(isDark: boolean): void {
         setDarkTheme(isDark);
     }
+    function scrollNext(): void {
+        const next = document.querySelector('#scroll-next');
+        next?.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
     return <>
         <section id='splash' className={styles.main}>
             <ThemeSwitcher className={styles.themeChanger} onThemeChange={handleTheme} />
@@ -28,7 +32,7 @@ export default function Splash() {
                     <img src="/monstera-2.svg" />
                 </div>
             </div>
-            <div className={styles.scrollDown}>
+            <div className={styles.scrollDown} onClick={scrollNext}>
                 <h3>See my</h3>
                 <img src="/scroll.png" title='scroll down'
                     style={{ filter: darkTheme ? 'invert(1)' : '' }} />

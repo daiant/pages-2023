@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300&family=Playfair+Display:wght@400;500;600;700&display=swap');
-
+:root {
+    --heading-font: 'Playfair Display', serif;
+    --normal-font: 'Lato', sans-serif;
+}
 h1 {
-    font-family: "Playfair Display", serif;
+    font-family: var(--heading-font);
     font-size: 78px;
 }
 h2 {
-    font-family: "Playfair Display", serif;
+    font-family: var(--heading-font);
     font-size: 36px;
 }
 h3 {
-    font-family: "Lato", sans-serif;
+    font-family: var(--normal-font);
     font-size: 24px;
     font-weight: 300;
     font-style: italic;
