@@ -6,6 +6,7 @@ export default function Nav() {
     const [dropDown, setDropDown] = useState(false);
     const [animation, setAnimation] = useState(false);
     const [position, setPosition] = useState(window.innerHeight * 1.2);
+    const [clientY, setClientY] = useState(0);
     const [opacity, setOpacity] = useState(0);
     const SNAP_THRESHOLD = getDropDownHeight() / 2;
     const MAX_OPACITY = 0.7;
@@ -37,12 +38,18 @@ export default function Nav() {
         }
         setDropDown(show);
     }
-
+    function initClientY(event: React.TouchEvent<HTMLDivElement>) {
+        setClientY(event.touches[0].clientY);
+    }
     function handleMovement(event: React.TouchEvent<HTMLDivElement>) {
-        const maxHeight = Math.min(event.touches[0].clientY, getDropDownHeight());
+        // Smooth behavior
+        const offsetY = getDropDownHeight() - (clientY - event.touches[0].clientY)
+        const maxHeight = Math.min(offsetY, getDropDownHeight());
         const position = window.innerHeight - maxHeight;
         updateOpacity(maxHeight);
         setPosition(position);
+
+        event.stopPropagation();
     }
 
     function snapPosition() {
@@ -52,7 +59,6 @@ export default function Nav() {
 
     function updateOpacity(position: number): void {
         const percentage = position / getDropDownHeight();
-        console.log(percentage)
         setOpacity(percentage * MAX_OPACITY);
     }
     function handleCat(event: React.MouseEvent<HTMLOrSVGElement>) {
@@ -70,7 +76,7 @@ export default function Nav() {
                         return <li key={route}>{route}</li>
                     })}
                 </ul>
-                <div className={styles.separator} onClick={hideDropDown} onTouchMove={handleMovement} onTouchEnd={snapPosition}>
+                <div className={styles.separator} onClick={hideDropDown} onTouchStart={initClientY} onTouchMove={handleMovement} onTouchEnd={snapPosition}>
                     <div className="bar"></div>
                     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" onClick={handleCat}>
                         <use href='#cat'></use>
