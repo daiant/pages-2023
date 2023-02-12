@@ -7,17 +7,16 @@
     position: relative;
     z-index: 9;
     padding-block-start: 26px;
-    background-image: url("/splash.jfif");
-
-    @media (prefers-color-scheme: dark) {
-        background-image: url('/splash-dark.jfif');
-    }
-    
+    background-image: var(--cover);    
     background-position: 80%;
     gap: 2rem;
     .themeChanger {
         position: absolute;
         right: 16px;
+        img {
+            width: 32px;
+            height: auto;
+        }
     }
     .title {
         text-align: center;
@@ -34,7 +33,7 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            border-right: 1px dashed var(--color);
+            border-right: 1px dashed var(--main-color);
             height: 100%;
             width: 1px;
         }
@@ -75,15 +74,12 @@
         }
         img {
             margin-inline: auto;
-            @media (prefers-color-scheme: dark) {
-                filter: invert(1);
-            }
         }
     }
 }
 @keyframes wind {
     0% {
-        transform: rotate(-2deg);
+        transform: rotate(0deg);
     }
     15% {
         transform: rotate(1deg);
