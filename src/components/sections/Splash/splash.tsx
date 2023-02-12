@@ -8,6 +8,7 @@ export default function Splash() {
         setDarkTheme(prefersDark);
     }, [])
     function handleThemeChange() {
+        // TODO: Transition on background gucci
         const root = document.querySelector(':root');
         if (!root) return;
 
