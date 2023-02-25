@@ -2,14 +2,27 @@
 
 import Bubble from '@/components/Bubble/bubble';
 import Nav from '@/components/Navigation/nav';
+import Block, { TypeBlock } from '@/components/sections/block/Block';
 import Splash from '@/components/sections/Splash/splash';
 import styles from './page.module.scss';
 
-
-const bubbles: Array<Bubble> = [
-  { title: 'me', img: 'https://github.com/daiant.png' },
-  { title: 'Drag me' }
-];
+const jobs: Array<TypeBlock> = [
+  {
+    title: 'Java Fullstack developer at Laberit Sistemas',
+    description: 'From 2020 to 2022 in Valencia, Spain',
+    img: '/sun.svg',
+  },
+  {
+    title: 'Java Fullstack developer at Laberit Sistemas',
+    description: 'From 2020 to 2022 in Valencia, Spain',
+    img: '/sun.svg',
+  },
+  {
+    title: 'Java Fullstack developer at Laberit Sistemas',
+    description: 'From 2020 to 2022 in Valencia, Spain',
+    img: '/sun.svg',
+  },
+]
 
 export default function Home() {
   const devMode: boolean = false;
@@ -20,24 +33,9 @@ export default function Home() {
         <Nav></Nav>
 
         <section id='scroll-next'>
-          <div className={styles.info}>
-            <h1>a CSS magician</h1>
-            <div className={styles.content}>
-              <p className={styles.jobDescription}>Java Fullstack developer at Laberit Sistemas</p>
-              <p className={styles.jobAdditionalInfo}>From 2020 to 2022 in Valencia, spain.</p>
-              <div className={styles.block}></div>
-            </div>
-            <div className={styles.content}>
-              <p className={styles.jobDescription}>Java Fullstack developer at Laberit Sistemas</p>
-              <p className={styles.jobAdditionalInfo}>From 2020 to 2022 in Valencia, spain.</p>
-              <div className={styles.block}></div>
-            </div>
-            <div className={styles.content}>
-              <p className={styles.jobDescription}>Java Fullstack developer at Laberit Sistemas</p>
-              <p className={styles.jobAdditionalInfo}>From 2020 to 2022 in Valencia, spain.</p>
-              <div className={styles.block}></div>
-            </div>
-          </div>
+          {jobs.map((job: TypeBlock, index: number) =>
+            <Block block={job} key={index} />
+          )}
         </section>
         <section>
           <div className={styles.info}>

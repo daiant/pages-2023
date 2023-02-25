@@ -62,28 +62,6 @@
         font-style: italic;
         margin-block-end: 32px;
       }
-      .content {
-        margin-block-end: 32px;
-        p {
-          margin: 0;
-        }
-        .jobDescription {
-          font-size: 16px;
-        }
-        .jobAdditionalInfo {
-          font-size: 13px;
-          margin-block-start: 3px;
-          font-style: italic;
-          font-weight: 200;
-        }
-      }
-      .block {
-        margin-block-start: 13px;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 16 / 9;
-        background-color: teal;
-      }
     }
   }
 }

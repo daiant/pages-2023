@@ -1,0 +1,28 @@
+.block {
+    margin-block-end: 32px;
+    img {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: auto;
+    }
+    p {
+        margin: 0;
+    }
+    .title {
+        font-size: 18px;
+        font-family: var(--heading-font);
+    }
+    .description {
+        font-family: var(--normal-font);
+        margin-block-start: 3px;
+        font-style: italic;
+        font-weight: 200;
+    }
+}
+// .block {
+//     margin-block-start: 13px;
+//     width: 100%;
+//     height: auto;
+//     aspect-ratio: 16 / 9;
+//     background-color: teal;
+// }
