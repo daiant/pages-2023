@@ -33,14 +33,6 @@
         margin-block: 0;
       }
     }
-    .bubbles {
-      margin-block: 32px;
-      border: 1px solid white;
-      overflow: hidden;
-      border-radius: 5px;
-      height: 40vh;
-      width: 100%;
-    }
     .scrollDown {
       text-align: center;
       display: grid;
@@ -52,15 +44,6 @@
       }
       img {
         filter: invert(1);
-      }
-    }
-    .info {
-      margin-block-start: 70px;
-      h1 {
-        font-size: 18px;
-        font-weight: 500;
-        font-style: italic;
-        margin-block-end: 32px;
       }
     }
   }

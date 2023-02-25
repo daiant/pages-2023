@@ -25,13 +25,11 @@ const jobs: Array<TypeBlock> = [
 ]
 
 export default function Home() {
-  const devMode: boolean = false;
   return (
     <main className={`${styles.main}`}>
       <Splash />
       <div className={styles.mainPage} id='main'>
         <Nav></Nav>
-
         <section id='scroll-next'>
           {jobs.map((job: TypeBlock, index: number) =>
             <Block block={job} key={index} />
@@ -39,7 +37,6 @@ export default function Home() {
         </section>
         <section>
           <div className={styles.info}>
-            <h1>a Hobbyist</h1>
             <div className="noInfo">
               <h2>Omg no info yet!!</h2>
               <h3>I don't have any hobbies :(</h3>
@@ -49,9 +46,4 @@ export default function Home() {
       </div>
     </main>
   )
-}
-
-type Bubble = {
-  title: string,
-  img?: string,
 }
