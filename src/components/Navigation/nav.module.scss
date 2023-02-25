@@ -45,8 +45,27 @@
                 font-size: 24px;
                 font-weight: 300;
                 font-style: italic;
+                position: relative;
+                width: fit-content;
                 & + li {
                     margin-block-start: 1em;
+                }
+                &:hover {
+                    &::after {
+                        width: 100%;
+                    }
+                }
+                &::after {
+                    background: #006C49;
+                    border-radius: 1px;
+                    bottom: 0px;
+                    content: "";
+                    height: 7px;
+                    left: 10px;
+                    position: absolute;
+                    transition: width 0.4s ease;
+                    width: 0;
+                    z-index: -1;
                 }
             }
         }
