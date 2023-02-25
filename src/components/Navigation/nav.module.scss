@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: space-between;
     padding-inline: 15px;
-    z-index: 2;
+    z-index: 99;
 
     p.title {
         font-size: 1.5rem;
@@ -32,7 +32,7 @@
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
         background-color: var(--on-surface-5);
-        z-index: 3;
+        z-index: 999;
         &.animation {
             transition: bottom 400ms ease;
         }
@@ -101,3 +101,4 @@
         }
     }
 }
+
