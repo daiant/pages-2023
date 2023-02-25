@@ -40,6 +40,10 @@ export default function Home() {
         <section>
           <div className={styles.info}>
             <h1>a Hobbyist</h1>
+            <div className="noInfo">
+              <h2>Omg no info yet!!</h2>
+              <h3>I don't have any hobbies :(</h3>
+            </div>
           </div>
         </section>
       </div>
