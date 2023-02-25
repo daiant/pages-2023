@@ -1,9 +1,8 @@
-'use client';
-
 import Nav from '@/components/Navigation/nav';
 import Block, { TypeBlock } from '@/components/sections/block/Block';
 import Splash from '@/components/sections/Splash/splash';
-import styles from './page.module.scss';
+import getPosts, { PostData } from '@/lib/posts/post';
+import styles from '../styles/Home.module.scss';
 
 const jobs: Array<TypeBlock> = [
   {
@@ -27,9 +26,9 @@ const jobs: Array<TypeBlock> = [
     img: '/red.png',
     tags: ['java', 'fullstack', 'react', 'web']
   },
-]
+];
 
-export default function Home() {
+export default function Home({ posts }: { posts: Array<PostData> }) {
   return (
     <main className={`${styles.main}`}>
       <Splash />
@@ -45,6 +44,20 @@ export default function Home() {
           <h3>I don't have any hobbies :(</h3>
         </div>
       </section>
+      <section>
+        <ul>
+          {posts.map((post: PostData) => {
+            return <li key={post.id}>{post.id}</li>
+          })}
+        </ul>
+      </section>
     </main>
   )
+}
+
+export async function getStaticProps() {
+  const posts = await getPosts(3);
+  return {
+    props: { posts: posts }
+  }
 }

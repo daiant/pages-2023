@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import styles from './themeSwitcher.module.scss';
 
-export default function ThemeSwitcher(props: {className: string, onThemeChange: Function}) {
+export default function ThemeSwitcher(props: { className: string, onThemeChange: Function }) {
     const [darkTheme, setDarkTheme] = useState(false);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     useEffect(() => {
-        setDarkTheme(prefersDark);
+        setDarkTheme(window.matchMedia('(prefers-color-scheme: dark)').matches);
     }, [])
 
     function handleThemeChange() {

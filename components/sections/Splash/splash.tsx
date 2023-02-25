@@ -4,16 +4,15 @@ import styles from './splash.module.scss';
 
 export default function Splash() {
     const [darkTheme, setDarkTheme] = useState(false);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     useEffect(() => {
-        setDarkTheme(prefersDark);
+        setDarkTheme(window?.matchMedia('(prefers-color-scheme: dark)').matches);
     }, [])
     function handleTheme(isDark: boolean): void {
         setDarkTheme(isDark);
     }
     function scrollNext(): void {
         const next = document.querySelector('#scroll-next');
-        next?.scrollIntoView({behavior: 'smooth', block: 'start'});
+        next?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     return <>
         <section id='splash' className={styles.main}>

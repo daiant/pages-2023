@@ -1,29 +1,32 @@
 import { routing } from '@/lib/menu.routing';
-import { DragEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './nav.module.scss';
 
 export default function Nav() {
     const [dropDown, setDropDown] = useState(false);
     const [animation, setAnimation] = useState(false);
-    const [position, setPosition] = useState(window.innerHeight * 1.2);
+    const [position, setPosition] = useState(0);
     const [clientY, setClientY] = useState(0);
     const [opacity, setOpacity] = useState(0);
-    const SNAP_THRESHOLD = getDropDownHeight() / 2;
+    let SNAP_THRESHOLD = 0;
     const MAX_OPACITY = 0.7;
-
+    useEffect(() => {
+        setPosition(window.innerHeight)
+        SNAP_THRESHOLD = getDropDownHeight() / 2;
+    }, [])
     function getSection(): string {
         return 'a CSS magician';
     }
 
     function getDropDownHeight(): number {
-        const dropDownElement = document.querySelector('.' + styles.dropDownMenu);
-        if(!dropDownElement) return window.innerHeight;
+        const dropDownElement = document?.querySelector('.' + styles.dropDownMenu);
+        if (!dropDownElement) return window?.innerHeight;
         return Number(getComputedStyle(dropDownElement!).height.replace('px', ''));
 
     }
 
     function showDropDown() { handleDropDown(true); setOpacity(MAX_OPACITY); }
-    function hideDropDown() { handleDropDown(false); setOpacity(0)}
+    function hideDropDown() { handleDropDown(false); setOpacity(0) }
     function handleDropDown(show: boolean) {
         setAnimation(true);
         setTimeout(() => setAnimation(false), 400)
@@ -68,7 +71,6 @@ export default function Nav() {
     return (
         <nav className={styles.nav}>
             <p className={styles.title}>Carlos is</p>
-            {/* <img src="/burgir.svg" /> */}
             <p className={styles.section} onClick={showDropDown}>{getSection()}</p>
             <section className={`${styles.dropDownMenu} ${dropDown ? styles.show : ''} ${animation ? styles.animation : ""}`} style={{ bottom: position + 'px' }}>
                 <ul>
@@ -83,7 +85,7 @@ export default function Nav() {
                     </svg>
                 </div>
             </section>
-            <div className={`${styles.mask} ${dropDown ? styles.show : ''}`} style={{opacity: opacity}} onClick={hideDropDown}></div>
+            <div className={`${styles.mask} ${dropDown ? styles.show : ''}`} style={{ opacity: opacity }} onClick={hideDropDown}></div>
         </nav>
 
     )
