@@ -1,15 +1,22 @@
 import fs from 'fs';
+import matter from 'gray-matter';
 import path from 'path';
 
 
 // IMPORTANT
 // THIS CODE IS DESIGNED TO WORK WHEN A DB IS IMPLEMENTED
 // RIGHT NOW IS ASYNC EVEN THO ITS NOT NEEDED
-
-export type PostData = {
-    id: string,
-    data: string,
+export type AggregatorRoot = {
+    id: string
+}
+export type PostHeaderData = {
+    tags: Array<string>,
+    title: string,
+    description: string,
     created_at: string,
+}
+export interface PostData extends AggregatorRoot, PostHeaderData {
+    content: string,
 }
 const FILE_PATH = '/posts/';
 const DB_PATH = "/posts.json";
@@ -33,12 +40,16 @@ async function fetchDB(max: number): Promise<Array<string>> {
 
 async function getPostData(filename: string): Promise<PostData> {
     const response = fs.readFileSync(path.join(process.cwd(), FILE_PATH, filename), 'utf-8');
-
-    return new Promise(resolve =>
-        resolve({
+    const matterResponse = matter(response);
+    return new Promise(resolve => {
+        const post: PostData = {
             id: filename,
-            data: response,
-            created_at: new Date().toLocaleString(),
-        })
-    )
+            title: matterResponse.data.title || '',
+            description: matterResponse.data.description || '',
+            tags: matterResponse.data.tags ? matterResponse.data.tags.split(',') : [],
+            content: matterResponse.content || '',
+            created_at: matterResponse.data.date || new Date().toLocaleDateString(),
+        }
+        resolve(post)
+    })
 }

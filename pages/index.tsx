@@ -49,11 +49,11 @@ export default function Home({ posts }: { posts: Array<PostData> }) {
         <ul>
           {posts.map((post: PostData) => {
             const blockPost: TypeBlock = {
-              heading: 'test',
-              description: 'lorem ipsum dolor',
-              title: "We're gonna die",
+              heading: post.tags[0] || 'undefined',
+              description: post.description || 'no description',
+              title: post.title || 'no title',
               img: '/red.png',
-              tags: []
+              tags: post.tags
             }
             return <li key={post.id}>
               <Block block={blockPost}></Block>
