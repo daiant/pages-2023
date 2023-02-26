@@ -17,12 +17,14 @@ export default function Block({ block }: { block: TypeBlock }) {
         <main>
             <p className={styles.title}>{block.title}</p>
             <p className={styles.description}>{block.description}</p>
-            <div className={styles.separator}></div>
-            <ul>
-                {block.tags.map((tag: string) => {
-                    return <li className="tag" key={tag}>{tag}</li>
-                })}
-            </ul>
+            {block.tags.length > 0 && <>
+                <div className={styles.separator}></div>
+                <ul>
+                    {block.tags.map((tag: string) => {
+                        return <li className="tag" key={tag}>{tag}</li>
+                    })}
+                </ul>
+            </>}
         </main>
     </div>
 }
