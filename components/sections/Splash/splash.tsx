@@ -1,3 +1,5 @@
+'use client'
+
 import ThemeSwitcher from '@/components/ThemeSwitcher/themeSwitcher';
 import { useEffect, useState } from 'react';
 import styles from './splash.module.scss';
@@ -34,7 +36,9 @@ export default function Splash() {
             <div className={styles.scrollDown} onClick={scrollNext}>
                 <h3>See my</h3>
                 <img src="/scroll.png" title='scroll down'
-                    style={{ filter: darkTheme ? 'invert(1)' : '' }} />
+                // TODO: INVESTIGAR ERROR DE CONSOLA
+                // style={{ filter: darkTheme ? 'invert(1)' : '' }}
+                />
                 <h3>work</h3>
             </div>
         </section>
