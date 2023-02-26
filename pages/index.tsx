@@ -45,9 +45,19 @@ export default function Home({ posts }: { posts: Array<PostData> }) {
         </div>
       </section>
       <section>
+        <h2>Latest thoughts</h2>
         <ul>
           {posts.map((post: PostData) => {
-            return <li key={post.id}>{post.id}</li>
+            const blockPost: TypeBlock = {
+              heading: 'test',
+              description: 'lorem ipsum dolor',
+              title: "We're gonna die",
+              img: '/red.png',
+              tags: []
+            }
+            return <li key={post.id}>
+              <Block block={blockPost}></Block>
+            </li>
           })}
         </ul>
       </section>
