@@ -2,6 +2,7 @@ import Nav from '@/components/Navigation/nav';
 import Block, { TypeBlock } from '@/components/sections/block/Block';
 import Splash from '@/components/sections/Splash/splash';
 import getPosts, { PostData } from '@/lib/posts/post';
+import Link from 'next/link';
 import styles from '../styles/Home.module.scss';
 
 const jobs: Array<TypeBlock> = [
@@ -55,8 +56,9 @@ export default function Home({ posts }: { posts: Array<PostData> }) {
               img: '/red.png',
               tags: post.tags
             }
-            return <li key={post.id}>
+            return <li key={post.id}><Link href={'/blog/' + post.id}>
               <Block block={blockPost}></Block>
+            </Link>
             </li>
           })}
         </ul>

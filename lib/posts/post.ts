@@ -1,5 +1,6 @@
 import fs from 'fs';
 import matter from 'gray-matter';
+import { GetStaticPathsResult } from 'next';
 import path from 'path';
 
 
@@ -28,17 +29,17 @@ export default async function getPosts(max: number): Promise<Array<PostData>> {
     }))
 }
 
-async function fetchDB(max: number): Promise<Array<string>> {
+async function fetchDB(max: number = 0): Promise<Array<string>> {
     const response = fs.readFileSync(path.join(process.cwd(), DB_PATH));
     const responseJSON = JSON.parse(response.toString())
     return new Promise(resolve => {
         const posts: Array<string> = Object.values(responseJSON);
-        if (posts.length > max) posts.slice(max);
+        if (max && posts.length > max) posts.slice(max);
         resolve(posts);
     })
 }
 
-async function getPostData(filename: string): Promise<PostData> {
+export async function getPostData(filename: string): Promise<PostData> {
     const response = fs.readFileSync(path.join(process.cwd(), FILE_PATH, filename), 'utf-8');
     const matterResponse = matter(response);
     return new Promise(resolve => {
@@ -52,4 +53,11 @@ async function getPostData(filename: string): Promise<PostData> {
         }
         resolve(post)
     })
+}
+
+export async function getPostPaths(): Promise<GetStaticPathsResult> {
+    const posts = (await fetchDB()).map((post: string) => {
+        return { params: { slug: post } }
+    });
+    return { paths: posts, fallback: false };
 }
