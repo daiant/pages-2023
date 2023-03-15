@@ -1,0 +1,19 @@
+{
+  "name": "daiant",
+  "version": "0.0.1",
+  "description": "Daiant Blog Backoffice",
+  "scripts": {},
+  "type": "module",
+  "keywords": [
+    "blog",
+    "daiant",
+    "express",
+    "node"
+  ],
+  "author": "daiant",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
