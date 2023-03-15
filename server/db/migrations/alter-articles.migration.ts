@@ -1,0 +1,1 @@
+export const alter_articles = `ALTER TABLE articles ADD CONSTRAINT articles_fk0 FOREIGN KEY (author_id) REFERENCES users(id);`
