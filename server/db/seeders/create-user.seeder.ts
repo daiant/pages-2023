@@ -1,0 +1,1 @@
+export const create_user = { value: "INSERT INTO users (name) VALUES (?)", parameters: ['cajal'] };

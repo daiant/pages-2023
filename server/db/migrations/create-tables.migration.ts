@@ -8,11 +8,11 @@ import { create_users } from './create-users.migration';
 async function migration() {
   const db = await pool.getConnection();
 
-  // await db.query(create_articles);
-  // await db.query(create_tags);
-  // await db.query(article_tags);
-  // await db.query(create_users);
-  // await db.query(alter_articles);
+  await db.query(create_articles);
+  await db.query(create_tags);
+  await db.query(article_tags);
+  await db.query(create_users);
+  await db.query(alter_articles);
   await db.query(alter_articles_tags);
 
   await db.end();
