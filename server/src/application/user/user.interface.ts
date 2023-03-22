@@ -3,34 +3,50 @@ import { pool } from "../../../db/connection";
 import { CRUD } from "../../domain/interfaces/base.interface";
 import { UserModel } from "../../domain/model/user.model";
 
-export class User implements CRUD<UserModel> {
-  private async query(query: string, parameters?: any): Promise<any> {
-    const db = await pool.getConnection();
-    return db.query(query, parameters).finally(() => db.end());
+export class User extends CRUD<UserModel> {
+  constructor() {
+    super('users');
   }
 
   async findAll(): Promise<Array<UserModel>> {
     try {
-      return this.query(`SELECT * FROM users`);
+      return this.select();
     } catch (error: any) {
       throw new Error(error);
     }
   }
   async findById(id: number): Promise<Array<UserModel>> {
     try {
-      return this.query(`SELECT * FROM users WHERE id = ?`, [id]);
+      return this.select({
+        where: { id: id }
+      });
     } catch (error: any) {
       throw new Error(error);
     }
   }
-  save(object: Partial<UserModel>): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async save(object: Partial<UserModel>): Promise<void> {
+    try {
+      if (object.id) {
+        return this.update(object, { where: { id: object.id } });
+      } else {
+        return this.insert(object);
+      }
+    } catch (error: any) {
+      throw error;
+    }
   }
-  update(object: Partial<UserModel>): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-  delete(id: number): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  destroy(id: number): Promise<void> {
+    try {
+      return this.delete({
+        where: {
+          id: id
+        }
+      });
+    } catch (error: any) {
+      throw error;
+    }
   }
 
 }
