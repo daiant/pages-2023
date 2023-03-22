@@ -1,12 +1,14 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { userRouter } from './controller/user.controller';
-import { pool } from '../db/connection';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+
+app.use(bodyParser.json());
 
 app.use('/users', userRouter);
 
