@@ -4,7 +4,8 @@ import { QueryBuilder, QueryValues } from "./query.builder";
 interface QueryOptions {
   where?: {
     [key: string]: string | number;
-  }
+  },
+  relations?: { table: string, field: string }[],
 }
 export abstract class CRUD<T> {
   database_name: string;
@@ -17,14 +18,21 @@ export abstract class CRUD<T> {
   abstract destroy(id: Id): Promise<void>;
 
   async select(options?: QueryOptions): Promise<Array<T>> {
-    let string = `SELECT * FROM ${this.database_name}`;
+    let string = `SELECT * FROM ${this.database_name} AS X`;
     const queryBuilder = new QueryBuilder(string);
+
+    if (options?.relations) {
+      options.relations.forEach((relation: { table: string, field: string }) => {
+        queryBuilder.relation(relation);
+      });
+    }
 
     if (options?.where) {
       // TODO: mas cositas aqui pueden entrar perfecto
       const [key, value] = Object.entries(options.where)[0];
       queryBuilder.where(key, value);
     }
+
     try {
       return this.query(queryBuilder.query, queryBuilder.values);
     } catch (error: any) {
@@ -63,7 +71,7 @@ export abstract class CRUD<T> {
   }
   async delete(options?: QueryOptions): Promise<void> {
     let string = `DELETE FROM  ${this.database_name}`;
-    const queryBuilder = new QueryBuilder(string)
+    const queryBuilder = new QueryBuilder(string);
     if (options?.where) {
       const [key, value] = Object.entries(options.where)[0];
       queryBuilder.where(key, value);

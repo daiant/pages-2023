@@ -29,7 +29,7 @@ export class Article extends CRUD<ArticleModel> {
 
   findById(id: Id): Promise<ArticleModel[]> {
     try {
-      return this.select({ where: { id: id } });
+      return this.select({ where: { id: id }, relations: [{ table: 'users', field: 'author_id' }] });
     } catch (error: any) {
       throw new Error(error);
     }

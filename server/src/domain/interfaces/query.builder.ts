@@ -8,10 +8,14 @@ export class QueryBuilder {
   }
 
   where(key: string, value: string | number): QueryValues {
-    this.query += ` WHERE ${key} = ?`;
+    this.query += ` WHERE X.${key} = ?`;
     this.values.push(value);
 
     return this.getQueryValues();
+  }
+
+  relation(relation: { table: string, field: string }) {
+    this.query += ` JOIN ${relation.table} AS Y ON X.${relation.field} = Y.id`;
   }
   insert(keys: string, values: Array<string | number>): QueryValues {
     this.query += ` (${keys}) VALUES (${this.getValuesLength(values)})`;
