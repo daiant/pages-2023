@@ -1,4 +1,5 @@
 import { pool } from "../../../db/connection";
+import { Id } from "../model/aggregator.model";
 import { QueryBuilder, QueryValues } from "./query.builder";
 interface QueryOptions {
   where?: {
@@ -11,8 +12,9 @@ export abstract class CRUD<T> {
     this.database_name = database_name;
   }
   abstract findAll(): Promise<Array<T>>;
-  abstract findById(id: number): Promise<Array<T>>;
+  abstract findById(id: Id): Promise<Array<T>>;
   abstract save(object: Partial<T>): Promise<void>;
+  abstract destroy(id: Id): Promise<void>;
 
   async select(options?: QueryOptions): Promise<Array<T>> {
     let string = `SELECT * FROM ${this.database_name}`;

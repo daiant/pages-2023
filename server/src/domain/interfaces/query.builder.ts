@@ -36,6 +36,6 @@ export class QueryBuilder {
     return { query: this.query, values: this.values };
   }
   private getValuesLength(values: Array<string | number>): string {
-    return Array(values.length).fill('?').join(' ');
+    return Array(values.length).fill('?').join(', ');
   }
 }
