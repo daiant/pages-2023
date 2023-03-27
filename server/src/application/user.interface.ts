@@ -1,7 +1,7 @@
 import { Pool, PoolConnection } from "mariadb";
-import { pool } from "../../../db/connection";
-import { CRUD } from "../../domain/interfaces/base.interface";
-import { UserModel } from "../../domain/model/user.model";
+import { pool } from "../../db/connection";
+import { CRUD } from "../domain/interfaces/base.interface";
+import { UserModel } from "../domain/model/user.model";
 
 export class User extends CRUD<UserModel> {
   constructor() {

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { User } from "../application/user/user.interface";
+import { User } from "../application/user.interface";
 export const userRouter = express.Router();
 
 userRouter.get('/', async (req: Request, res: Response) => {
